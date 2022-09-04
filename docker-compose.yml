@@ -14,33 +14,28 @@ services:
     ports:
       - 3306:3306
     restart: always
+    healthcheck:
+      test: [ "CMD", "mysqladmin", "ping", "-h", "localhost" ]
+      interval: 30s
+      timeout: 30s
+      retries: 20
+      start_period: 30s
 
   assessment:
     build: .
     container_name: assessment
-    command:
-      [
-        "./wait-for-it.sh",
-        "database:3306",
-        "--",
-        "python",
-        "run.py"
-      ]
+    command: [ "python", "run.py" ]
     volumes:
       - ./data:/data
     depends_on:
-      - database
+      database:
+        condition: service_healthy
 
   test:
     build: .
     container_name: test
-    command:
-      [
-        "./wait-for-it.sh",
-        "database:3306",
-        "--",
-        "python",
-        "test.py"
-      ]
+    command: [ "python", "test.py" ]
+    # command: [ "tail", "-F", "whatever" ]
     depends_on:
-      - database
+      database:
+        condition: service_healthy
