@@ -12,6 +12,8 @@ class CSVHandler:
         self.df = None
 
     def download_files(self) -> None:
+        """Download csv files to .csv and .json formats if '../data/' has no files already
+        """
         csv_name = "people.csv"
         json_name = "people.json"
 
@@ -27,6 +29,10 @@ class CSVHandler:
             df.to_json(data_path.joinpath(json_name))
 
     def load_dataframe(self) -> pd.DataFrame:
+        """Load '../data/people.json' file content to CSVHandler 'df' attribute
+
+        :return: The dataframe
+        """
         self.df = pd.read_json(self.base_path.joinpath(f"data/people.json").resolve())
 
         return self.df
