@@ -1,9 +1,11 @@
+version: '3.8'
+
 services:
   database:
     image: mysql:8.0
     container_name: database
     command:
-      - "--default-authentication-plugin=mysql_native_password"
+      - "--authentication_policy=mysql_native_password"
     environment:
       MYSQL_DATABASE: datatestdb
       MYSQL_USER: datatest
@@ -13,7 +15,7 @@ services:
       - ./mysql-schemas:/docker-entrypoint-initdb.d
     ports:
       - 3306:3306
-    restart: always
+    restart: on-failure
     healthcheck:
       test: [ "CMD", "mysqladmin", "ping", "-h", "localhost" ]
       interval: 30s
