@@ -29,6 +29,7 @@ services:
     command: [ "python", "run.py" ]
     volumes:
       - ./data:/data
+      - ./assessment:/assessment
     depends_on:
       database:
         condition: service_healthy
@@ -38,6 +39,8 @@ services:
     container_name: test
     command: [ "python", "test.py" ]
     # command: [ "tail", "-F", "whatever" ]
+    volumes:
+      - ./assessment:/assessment
     depends_on:
       database:
         condition: service_healthy
