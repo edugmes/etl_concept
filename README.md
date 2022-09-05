@@ -56,3 +56,6 @@ Unit tests are at `test_data.py`.
 4. (And 5) Stats are made at `database_handler.py -> PeopleDB` and are available via api at `main.py -> people_stats`.
 
 
+## The API
+
+It has one endpoint at `"/people_stats` (e.g. localhost:8000/people_stats) and its Swagger documentation can be found at `/docs` (e.g. localhost:8000/docs)
