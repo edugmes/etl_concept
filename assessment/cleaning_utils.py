@@ -150,3 +150,35 @@ def trim_data(df: pd.DataFrame) -> pd.DataFrame:
     df = df.applymap(lambda x: x.strip() if isinstance(x, str) else x)
 
     return df
+
+
+def split_titles_from_name(df: pd.DataFrame) -> pd.DataFrame:
+    """Search for names with titles (e.g. dr. john smith), split it and create another column
+    named 'title'.
+
+    :param df: The dataframe with 'name' column to split title from name
+    :return: The dataframe with a new column named 'title'
+    """
+    # regex for title happening in the beginning of name
+    regex = r"^.+\.\s+"
+    # split the name with regex and create two columns with 'expand' (ignore null values)
+    title_name_df = df[df["name"].str.contains(regex, na=False)].name.str.split(
+        ".", expand=True, n=1
+    )
+    # updated dataframe with the two new columns
+    df["title"] = title_name_df[0]
+    df["name2"] = title_name_df[1]
+    # reuse names that have no title
+    df["name2"] = df["name2"].fillna(df["name"])
+    # set names without title to unknown
+    df["title"] = df["title"].fillna("unknown")
+
+    # rearrange columns order
+    cols = list(df.columns)
+    cols = [cols[-2]] + [cols[-1]] + cols[1:-2]
+    df = df[cols]
+
+    df = rename_columns(df, {"name2": "name"})
+
+    # TODO one interesting thing would be to create categories with titles unique values
+    return df
