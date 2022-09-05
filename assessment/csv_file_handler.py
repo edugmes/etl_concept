@@ -54,7 +54,7 @@ class CSVHandler:
         c - set all columns names to lower case
         d - set all string values to lower case
         e - trim all string values (' swimming', 'swimming ', and 'swimming' should be the same thing)
-        f - drop entires columns that have at least 70% of values as null
+        f - try to drop entire columns that have at least 80% (0.8) of values as null
         g - drop rows of people that have no interest
 
         Cleaning suggestions:
@@ -79,18 +79,15 @@ class CSVHandler:
         self.df = split_titles_from_name(self.df)
         # f (description above)
         self.df = drop_null_columns(
-            self.df, null_percentage_threshold=0.7, info_only=False
+            self.df, null_percentage_threshold=0.8, info_only=False
         )
-        # g (description above) Since drop_null_columns (above) drops "interest1" column which has 70% of values as null,
-        # drop_null_rows (below) is called only with interest 2, 3 and 4. But if drop_null_columns was called with
-        # 0.8 or not even called, drop_null_rows could be called with all the interest columns, since none
-        # would've been droped.
+        # g (description above)
         self.df = drop_null_rows(
             self.df,
             null_count=4,
             info_only=False,
-            # cols_of_interest=["interest1", "interest2", "interest3", "interest4"],
-            cols_of_interest=["interest2", "interest3", "interest4"],
+            cols_of_interest=["interest1", "interest2", "interest3", "interest4"],
+            # cols_of_interest=["interest2", "interest3", "interest4"],
         )
 
         return self.df
