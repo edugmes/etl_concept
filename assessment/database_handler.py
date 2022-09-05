@@ -1,5 +1,4 @@
 from typing import Union
-from unittest import result
 
 import pandas as pd
 from sqlalchemy.orm import Session

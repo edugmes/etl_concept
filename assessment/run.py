@@ -1,13 +1,5 @@
-import json
-
-from sqlalchemy import create_engine
-from sqlalchemy.orm import declarative_base
-
 from csv_file_handler import CSVHandler
-from data_schema import Person
 from database_handler import PeopleDB
-
-# from db_config import sql_schema_dump
 
 
 def run():

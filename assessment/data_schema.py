@@ -1,4 +1,4 @@
-from sqlalchemy import Column, Integer, MetaData, String, create_engine
+from sqlalchemy import Column, Integer, String
 
 from db_config import Base
 
