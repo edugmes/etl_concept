@@ -128,3 +128,25 @@ def drop_null_rows(
     df.dropna(axis="index", thresh=thresh, inplace=True, subset=cols_of_interest)
 
     return df
+
+
+def data_to_lower_case(df: pd.DataFrame) -> pd.DataFrame:
+    """Update all columns values to lower case if they are of type str
+
+    :param df: The dataframe to lower case
+    :return: The updated dataframe
+    """
+    df = df.applymap(lambda x: x.lower() if isinstance(x, str) else x)
+
+    return df
+
+
+def trim_data(df: pd.DataFrame) -> pd.DataFrame:
+    """Remove whitespace (begining and and) of dataframe values that are of type str
+
+    :param df: The dataframe to be trimmed
+    :return: The updated dataframe
+    """
+    df = df.applymap(lambda x: x.strip() if isinstance(x, str) else x)
+
+    return df
