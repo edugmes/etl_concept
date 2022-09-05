@@ -14,4 +14,5 @@ if __name__ == "__main__":
     )
     csv_handler.download_files()
     csv_handler.load_dataframe()
-    print(csv_handler.df.head())
+    # print(csv_handler.df.head())
+    print(csv_handler.clean_data())
