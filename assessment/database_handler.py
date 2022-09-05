@@ -22,7 +22,7 @@ class PeopleDB:
         df.to_sql(
             name=Person.__tablename__,
             con=engine,
-            if_exists="replace",
+            if_exists="append",  # 'replace' or 'fail' also available
             method="multi",
             index=True,
             index_label="id",
