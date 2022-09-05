@@ -44,7 +44,7 @@ metioned above.
 
 As for the steps of the assessment:
 
-1. CSV download and .csv/.json saving is done automatically at container startup and saved to `/data`
+1. CSV download and .csv/.json saving is done automatically at container startup and saved to `/data`.
 
 2. `cleaning_utils.py` contains all the functions related to data cleaning.
 Two types of data cleaning and remove people without interest is done at `csv_file_handler.py -> CSVHandler -> clean_data`.
@@ -58,4 +58,4 @@ Unit tests are at `test_data.py`.
 
 ## The API
 
-It has one endpoint at `"/people_stats` (e.g. localhost:8000/people_stats) and its Swagger documentation can be found at `/docs` (e.g. localhost:8000/docs)
+It has one endpoint at `"/people_stats` (e.g. localhost:8000/people_stats) and its Swagger documentation can be found at `/docs` (e.g. localhost:8000/docs).
