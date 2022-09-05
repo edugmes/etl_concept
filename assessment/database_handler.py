@@ -10,8 +10,7 @@ from db_config import Base, engine
 
 class PeopleDB:
     def create(self):
-        """Create the database schema to the database engine
-        """
+        """Create the database schema to the database engine"""
         Base.metadata.create_all(engine)
 
     def save_from_dataframe(self, df: pd.DataFrame) -> None:
@@ -22,7 +21,7 @@ class PeopleDB:
         df.to_sql(
             name=Person.__tablename__,
             con=engine,
-            if_exists="append",  # 'replace' or 'fail' also available
+            if_exists="replace",  # 'append', 'replace' or 'fail' available
             method="multi",
             index=True,
             index_label="id",

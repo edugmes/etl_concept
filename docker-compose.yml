@@ -26,7 +26,10 @@ services:
   assessment:
     build: .
     container_name: assessment
-    command: [ "python", "run.py" ]
+    command: >
+      bash -c "python run.py && uvicorn main:app --host 0.0.0.0 --port 8000 --reload"
+    ports:
+      - "8000:8000"
     volumes:
       - ./data:/data
       - ./assessment:/assessment
@@ -38,7 +41,6 @@ services:
     build: .
     container_name: test
     command: [ "python", "test.py" ]
-    # command: [ "tail", "-F", "whatever" ]
     volumes:
       - ./assessment:/assessment
     depends_on:
