@@ -1,5 +1,5 @@
-from csv_file_handler import CSVHandler
-from database_handler import PeopleDB
+from database.database_handler import PeopleDB
+from datahandling.csv_file_handler import CSVHandler
 
 if __name__ == "__main__":
     # handle csv data

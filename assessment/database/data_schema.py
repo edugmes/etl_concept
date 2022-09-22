@@ -1,6 +1,6 @@
 from sqlalchemy import Column, Integer, String
 
-from db_config import Base
+from database.db_config import Base
 
 
 class Person(Base):

@@ -4,8 +4,8 @@ import numpy
 import pandas as pd
 from pandas.testing import assert_frame_equal
 
-import cleaning_utils as clut
-from csv_file_handler import CSVHandler
+import datahandling.cleaning_utils as clut
+from datahandling.csv_file_handler import CSVHandler
 
 
 class DataTests(unittest.TestCase):

@@ -2,7 +2,7 @@ from pathlib import Path
 
 import pandas as pd
 
-from cleaning_utils import (
+from datahandling.cleaning_utils import (
     data_to_lower_case,
     drop_null_columns,
     drop_null_rows,
@@ -17,13 +17,12 @@ class CSVHandler:
     def __init__(self, url) -> None:
         self.url = url
         self.base_path = (
-            Path(__file__).parent.resolve().parent.resolve()
+            Path(__file__).parent.resolve().parent.resolve().parent.resolve()
         )  # ../assessment
         self.df = None
 
     def download_files(self) -> None:
-        """Download csv files to .csv and .json formats if '../data/' has no files already
-        """
+        """Download csv files to .csv and .json formats if '../data/' has no files already"""
         csv_name = "people.csv"
         json_name = "people.json"
 

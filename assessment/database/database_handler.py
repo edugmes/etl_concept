@@ -4,8 +4,8 @@ import pandas as pd
 from sqlalchemy.orm import Session
 from sqlalchemy.sql import desc, func
 
-from data_schema import Person
-from db_config import Base, engine
+from database.data_schema import Person
+from database.db_config import Base, engine
 
 
 class PeopleDB:
