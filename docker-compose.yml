@@ -22,12 +22,14 @@ services:
       timeout: 30s
       retries: 20
       start_period: 30s
+    tmpfs:
+      - /var/lib/mysql
 
   assessment:
     build: .
     container_name: assessment
     command: >
-      bash -c "python run.py && uvicorn main:app --host 0.0.0.0 --port 8000 --reload"
+      bash -c "python run.py && uvicorn api.main:app --host 0.0.0.0 --port 8000 --reload"
     ports:
       - "8000:8000"
     volumes:
