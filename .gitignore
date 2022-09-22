@@ -1,3 +1,3 @@
 data/*
-!data/.gitkeep 
-assessment/__pycache__
+!data/.gitkeep
+*__pycache__

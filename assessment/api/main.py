@@ -1,7 +1,7 @@
+from database.database_handler import PeopleDB
 from fastapi import FastAPI
 
-from database_handler import PeopleDB
-from fastapi_schema import PeopleStatsOut
+from api.fastapi_schema import PeopleStatsOut
 
 app = FastAPI(
     title="ETLConceptAPI",
